@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #303030;
+            color: #ffffff;
+            margin: 0;
+            padding: 80px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px ;
+            color: rgb(255, 13, 13);
+            cursor: pointer;
+        }
+
+        h2 {
+            text-align: center;
+            font-weight: normal;
+            margin-bottom: 50px;
+
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: auto;
+            background: #d4d4d4;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .card {
+            background-color: #737373;
+            padding: 25px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            text-align: center;
+            color: white;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h3 {
+            margin-bottom: 20px;
+            color: #000000;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: #ed0000;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #862929;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 40px 10px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .card h3 {
+                font-size: 18px;
+            }
+
+            .btn {
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+        }
+
+        </style>
+</head>
+<body>
+    <h1>Welcome Admin</h1>
+    <div class="admin-panel" id="adminPanel">
+    <h2>Admin Panel</h2>
+    </div>
+<div class="container">
+    <div class="card">
+        <h3>View Movies</h3>
+        <a th:href="@{/admin/admin_viewmovie}" class="btn">View</a>
+    </div>
+
+    <div class="card">
+        <h3>Edit Movies</h3>
+        <a th:href="@{/admin/admin_editmovie/{id}(id=1)}" class="btn">Edit</a>
+    </div>
+
+    <div class="card">
+        <h3>Add Movies</h3>
+        <a th:href="@{/admin/add_movie}" class="btn">Add</a>
+    </div>
+
+    <div class="card">
+        <h3>User Details</h3>
+        <a th:href="@{/admin/admin_userdetail}" class="btn">View</a>
+    </div>
+
+    <div class="card">
+        <h3>Contact Details</h3>
+        <a th:href="@{/admin/admin_contact}" class="btn">View</a>
+    </div>
+
+    <div class="card">
+        <h3>Movie Review Details</h3>
+        <a th:href="@{/admin/admin_movie_review}" class="btn">View</a>
+    </div>
+</div>
+</body>
+</html>
+
+<script>
+    document.getElementById('adminPanel').addEventListener('click', function() {
+        window.location.href = '/admin/dashboard';
+    });
+</script>

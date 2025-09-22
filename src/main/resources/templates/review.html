@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        
+  .star-rating {
+    direction: rtl;
+    display: flex;
+    justify-content: start;
+  }
+
+  .star-rating input[type="radio"] {
+    display: none;
+  }
+
+  .star-rating label {
+    font-size: 2rem;
+    color: lightgray;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .star-rating input[type="radio"]:checked ~ label {
+    color: gold;
+  }
+
+  .star-rating label:hover,
+  .star-rating label:hover ~ label {
+    color: gold;
+  }
+</style>
+</head>
+<body>
+    <form id="reviewForm">
+  <h2>Leave a Review</h2>
+  
+  <div class="star-rating">
+    <input type="radio" id="star5" name="rating" value="5" />
+    <label for="star5">&#9733;</label>
+
+    <input type="radio" id="star4" name="rating" value="4" />
+    <label for="star4">&#9733;</label>
+
+    <input type="radio" id="star3" name="rating" value="3" />
+    <label for="star3">&#9733;</label>
+
+    <input type="radio" id="star2" name="rating" value="2" />
+    <label for="star2">&#9733;</label>
+
+    <input type="radio" id="star1" name="rating" value="1" />
+    <label for="star1">&#9733;</label>
+  </div>
+
+  <textarea name="comment" placeholder="Write your comment..." required></textarea>
+
+  <input type="hidden" name="movieId" value="1" /> <!-- Set movie ID dynamically -->
+  <input type="hidden" name="userId" value="2" /> <!-- Set user ID dynamically -->
+
+  <button type="submit">Submit Review</button>
+</form>
+
+<script>
+  document.getElementById('reviewForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const form = e.target;
+
+    const rating = form.rating.value;
+    const comment = form.comment.value;
+    const movieId = form.movieId.value;
+    const userId = form.userId.value;
+
+    const review = {
+      rating: rating,
+      comment: comment,
+      movie: { id: movieId },
+      user: { id: userId }
+    };
+
+    const res = await fetch('/review', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(review)
+    });
+
+    if (res.ok) {
+      alert("Review submitted!");
+      form.reset();
+    } else {
+      alert("Failed to submit review.");
+    }
+  });
+</script>
+</body>
+</html>

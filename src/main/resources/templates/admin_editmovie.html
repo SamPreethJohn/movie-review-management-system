@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Edit Movies</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+   <style>
+       body {
+           font-family: Arial, Helvetica, sans-serif;
+           margin: 20px;
+           background-color: #666666;
+       }
+
+       .navbar {
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           background-color: #303030;
+           padding: 15px 25px;
+           border-radius: 10px;
+           box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+       }
+
+       .navbar a {
+           text-decoration: none;
+           color: #ffffff;
+           font-weight: bold;
+           transition: color 0.3s;
+       }
+
+       .navbar a:hover {
+           color:#f51818;
+       }
+
+       .navbar h3 {
+           margin: 0;
+           color: #f51818;
+       }
+
+       .admin-container {
+           max-width: 600px;
+           margin: 40px auto;
+           padding: 30px;
+           background-color: #fff;
+           border-radius: 12px;
+           box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+       }
+
+        h2 {
+           color: red;
+           text-align: center;
+           margin-bottom: 30px;
+           font-size: 26px;
+       }
+
+       label {
+           display: block;
+           margin: 14px 0 6px;
+           font-weight: bold;
+           color: #333;
+           font-size: 16px;
+       }
+
+       input, select, textarea {
+           width: 100%;
+           padding: 10px;
+           border-radius: 6px;
+           border: 1px solid #ccc;
+           margin-bottom: 15px;
+       }
+
+       input[type="file"] {
+           padding: 5px;
+       }
+
+       button {
+           background-color: #f51818;
+           color: #ffffff;
+           padding: 12px 20px;
+           border: none;
+           border-radius: 6px;
+           font-weight: bold;
+           cursor: pointer;
+           text-align: center;
+           margin-top: 10px;
+       }
+
+       button:hover {
+           background-color: #c71515;
+       }
+
+   </style>
+</head>
+<body>
+
+   <div class="navbar">
+       <a href="/admin/admin_viewmovies" class="addpanel"><i class="fa fa-arrow-left"></i> Back to Admin Panel</a>
+       <h3>Edit Movie</h3>
+       <a href="/admin/admin_addmovies" class="addmovies">Add New Movie <i class="fa fa-plus-square"></i></a>
+   </div>
+   <div class="admin-container">
+       <div class="admin-items">
+           <form th:action="@{'/admin/admin_editmovie/' + ${movie.id}}" th:object="${movie}" method="post" enctype="multipart/form-data">
+            <input type="hidden" th:field="*{id}" />
+
+               <label for="title">Movie Title:</label>
+               <input type="text" id="title" th:field="*{title}" placeholder="Enter the Movie Name" required>
+
+               <label for="description">Movie Description:</label>
+               <textarea id="description" th:field="*{description}" rows="4" placeholder="Enter the Movie Description..." required></textarea>
+
+               <label for="genre">Genre:</label>
+           <select id="genre" name="genre" th:field="*{genre}" multiple="multiple" >
+               <option value="" disabled>Select Genre</option>
+               <option th:each="g: ${genre}"
+                       th:value="${g}"
+                       th:text="${g}"   ></option>
+           </select>
+           <small style="color: gray;">(Hold Ctrl or Cmd to select multiple)</small>
+
+           <label for="year">Release Year:</label>
+           <input type="date" id ="year" th:field="*{releaseYear}" min="1900" max="2100" placeholder="Enter the Release Year" required>
+
+           <label for="duration">Duration(in minutes):</label>
+           <input type="number" id ="duration" th:field="*{duration}" min="1" max="900" placeholder="Enter the Duration of the Movie" required>
+
+           <label for="rating">Cinema Paradiso Rating:</label>
+           <input type="number" id ="rating" th:field="*{rating}" min="1" max="10" step="0.1" placeholder="Enter the Rating of the Movie" required>
+
+           <label for="director">Director:</label>
+           <input type="text" id="director" th:field="*{director}" placeholder="Enter the Director Name" required>
+
+           <label for="cast">Cast:</label>
+           <input type="text" id="cast" th:field="*{cast}" placeholder="Enter the Cast" required>
+
+           <label for="poster">Movie Poster:</label>
+           <input type="file" id="poster" name="poster" accept="image/*">
+
+               <button class="btn" type="submit" value="Save Movies">Save Edited Movie</button>
+
+
+
+           </form>
+       </div>
+   </div>
+</body>
+</html>

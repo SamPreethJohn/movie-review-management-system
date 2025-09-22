@@ -1,0 +1,131 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 20px;
+            background-color: #666666;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #303030;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            padding: 6px 10px;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        .navbar a:hover {
+            color:#f51818;
+        }
+
+        .navbar h3 {
+            margin: 0;
+            color: #f51818;
+        }
+
+        .container {
+            margin-top: 30px;
+        }
+
+        h2 {
+            color: #dadada;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .table-wraper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #303030;
+            color: #ffffff;
+        }
+
+        tr:nth-child(even){
+            background-color: #fafafa;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        td {
+            word-wrap: break-word;
+            max-width: 200px;
+        }
+    </style>
+ </head>
+ <body>
+    <div class="navbar">
+        <a href="/admin/admin_dashboard" class="addpanel"><i class="fa fa-arrow-left"></i> Back to Admin Page</a>
+        <h3>User contact detail</h3>
+        <a href="/admin/admin_addmovie" class="addmovies">Add New Movie <i class="fa fa-plus-square"></i></a>
+    </div>
+
+    <div class="container">
+        <h2>All User Contacts</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Time of Entry</th>
+                    <th>Message</th>
+                    <th>Subject</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:if="${#lists.isEmpty(contacts)}">
+                    <td colspan="6">No contact details available.</td>
+                </tr>
+                <tr th:each="i : ${contacts}">
+                    <td th:text="${i.id}"></td>
+                    <td th:text="${i.name}"></td>
+                    <td th:text="${i.email}"></td>
+                    <td th:text="${i.mobile}"></td>
+                    <td th:text="${i.enquiry}"></td>
+                    <td th:text="${i.message}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+ </body>
+ </html>

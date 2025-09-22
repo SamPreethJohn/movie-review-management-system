@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details</title>
+</head>
+<body>
+    <h2 th:text="${movie.title}"></h2>
+<p th:text="${movie.description}"></p>
+<h3>Reviews:</h3>
+<div th:each="review : ${movie.reviews}">
+    <p th:text="${review.comment}"></p>
+</div>
+
+<form th:action="@{/review/submit}" method="post" th:object="${review}">
+    <textarea th:field="*{comment}" placeholder="Write your review..."></textarea>
+    <input type="hidden" th:field="*{movieId}" th:value="${movie.id}">
+    <button type="submit">Submit Review</button>
+</form>
+</body>
+</html>

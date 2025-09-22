@@ -1,0 +1,203 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Edit Movie Cards</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #303030;
+            color: #ffffff;
+            padding: 20px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #202020;
+            padding: 15px 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+         .navbar a:hover {
+            color:#f51818;
+        }
+
+        .navbar h3 {
+            color: #f51818;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            background-color: #404040;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffcc00;
+            margin-bottom: 30px;
+        }
+
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .movie-card {
+            background: #1e1e1e;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s ease;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .movie-card h3 {
+            margin: 0;
+            font-size: 20px;
+            color: #ffcc00;
+        }
+
+        .movie-card p {
+            margin: 5px 0;
+            color: #ccc;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 12px;
+            background: #f51818;
+            color: #000;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #aa1919;
+        }
+
+        .poster {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .poster img {
+            width: 100%;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .details {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .details h1 {
+            margin: 0 0 15px;
+            color: #f51818;
+        }
+
+        .details p {
+            margin: 8px 0;
+        }
+
+        .rating {
+            font-size: 18px;
+            font-weight: bold;
+            color: gold;
+        }
+
+        .reviews {
+            margin-top: 40px;
+            background-color: #505050;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .reviews h2 {
+            color: #f51818;
+            margin-bottom: 15px;
+        }
+
+        .review {
+            background: #606060;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .review strong {
+            color: #ffcc00;
+        }
+
+        .no-reviews {
+            color: #ccc;
+            font-style: italic;
+        }
+
+
+    </style>
+ </head>
+ <body>
+    
+    <div class="navbar">
+        <a href="/admin/dashboard" class="addpanel"><i class="fa fa-arrow-left"></i> Back</a>
+        <h3 id="heading">Movie Details</h3>
+        <!-- <a href="/admin/dashboard" class="addmovies"></a> -->
+        <!-- <i class="fa fa-plus-square"></i> -->
+    </div>
+
+    <div class="container">
+        <h1>All uploaded Movies</h1>
+        <div class="movie-grid">
+            <div class="movie-card" th:each="movie : ${movies}">
+            <img th:if="${movie.imageUrl != null}" th:src="@{${movie.imageUrl}}" alt="Movie Poster">
+            <h3 th:text="${movie.title}">Movie Title:</h3>
+            <p><strong>Genre:</strong> <span th:each="g, iterStat : ${movie.genre}" th:text="${g} + ${!iterStat.last ? ',' : ''}"></span></p>
+            <p><strong>Release Year:</strong> <span th:text="${movie.releaseYear}"></span></p>
+            <a th:href="@{/admin/admin_movieDetails(movieId=${movie.id})}" class="btn">View Details</a>   
+        </div>
+    </div>
+ </body>
+ </html>
+
+ <script>
+    document.getElementById("heading").addEventListener("click", function() {
+        window.location.href = "/admin/dashboard";
+    });
+
+ </script>
+
+ 

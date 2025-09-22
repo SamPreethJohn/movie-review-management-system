@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Cinema Paradiso</title>
+   
+</head>
+<body>
+   <header>
+    <a href="/home" class="logo" id="logo">Cinema Paradiso</a>
+    <div class="search-section">
+    <input type="text" id="searchInput" placeholder="Search movies..." autocomplete="off" />
+     <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+    <nav>
+        <ul class="nav-links">
+            <li><a th:href="@{/user/proform}">Cinema pardiso <span>Pro</span></a></li>
+            <li><a th:href="@{/movies}">Movie Details</a></li>
+            <li><a th:href="@{/user/{userId}/watchlist(userId=${userId})}">Watchlist</a></li>
+            <li><a th:href="@{/register}">Profile</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero">
+  <div class="trailer-container">
+   <div class="main-trailer" id="mainTrailer">
+    <button class="nav prev">❮</button>
+    <!-- Default Poster -->
+    <img id="mainPoster" th:src="@{/images/superman-poster.jpg}" alt="Trailer">
+    <!-- Youtube Player -->
+     <div class="video-container">
+     <iframe id="mainVideo" width="100%" height="500" src="" frameborder="0" 
+             allow="autoplay; encrypted-media" allowfullscreen style="display: none;"></iframe>
+             </div>
+
+    <div class="play-overlay" id="playOverlay">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/White_triangle_play_button.svg" alt="Play">
+    </div>
+
+    <div class="trailer-info">
+      <h2 id="mainTitle">Throwback CD Picks From the "Twisted Metal" Cast</h2>
+      <p>Watch Now</p>
+    </div>
+  </div>
+
+  <div class="up-next" id="upNext">
+    <h3>Up next</h3>
+
+    <!-- Trailer -->
+    <div class="trailer-item" data-title="George Clooney Is 'Jay Kelly'" 
+         data-video="https://youtu.be/ZEN-Shpx7XE?si=2D7Rw9ot1RnTynbs">
+      <img th:src="@{/images/Screen-picks.jpg}" alt="Trailer">
+      <div class="trailer-text">
+        <p>George Clooney Is 'Jay Kelly'</p>
+        <span class="duration">1:39</span>
+      </div>
+    </div>
+
+    <div class="trailer-item" data-title="Breaking Down Every Guest Star in 'Happy Gilmore 2'" data-video="https://youtu.be/YKzRPFvky9Y?si=cdaCfeY4gJNw9dDK">
+      <img th:src="@{/images/Happy-Gilmore-2.jpg}" alt="Trailer">
+      <div class="trailer-text">
+        <p>Breaking Down Every Guest Star in 'Happy Gilmore 2'</p>
+        <span class="duration">2:32</span>
+      </div>
+    </div>
+
+    <div class="trailer-item" data-title="Miles Teller & Elizabeth Olsen Star in 'Eternity'" data-video="https://youtu.be/irXTps1REHU?si=i0g4h6gG6Er1PCM-">
+      <img th:src="@{/images/Elizabeth-Olsen.jpg}" alt="Trailer">
+      <div class="trailer-text">
+        <p>Miles Teller & Elizabeth Olsen Star in 'Eternity'</p>
+        <span class="duration">2:37</span>
+      </div>
+    </div>
+
+  <div class="slider" id="slider">
+    <div class="slide">
+     <iframe width="560" height="315" src="https://www.youtube.com/embed/nb_fFj_0rq8?si=6ZfjO1-N2hK2r59e" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <div class="slide">
+     <iframe width="560" height="315" src="https://www.youtube.com/embed/qeVfT2iLiu0?si=iK-BjvOXb6-VQfNS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <div class="slide">
+     <iframe width="560" height="315" src="https://www.youtube.com/embed/03u4xyj0TH4?si=LXzfzeCpTlBY26Mm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <div class="slide">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/5nyOgE-qEpQ?si=XleQJMsyOwbAMCDM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <div class="slide">
+     <iframe width="560" height="315" src="https://www.youtube.com/embed/18QQWa5MEcs?si=unWolCqzbCph11v6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <div class="slide">
+     <iframe width="560" height="315" src="https://www.youtube.com/embed/mjBym9uKth4?si=hpXKntuJWtBe_rDW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <div class="slide">
+     <iframe width="560" height="315" src="https://www.youtube.com/embed/UWMzKXsY9A4?si=VXoYjcYvFD2hNNRc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+  </div>
+    <div class="hero-content">
+        <h1>Featured Movie: The Timeless Classic</h1>
+        <p>Relive the magic of movies through time.</p>
+        <button onclick="document.querySelector('.container').scrollIntoView({behavior: 'smooth' })">Watch Now</button>
+    </div>
+</section>
+
+<div class="container">
+    <h1>All Movies</h1>
+    <div class="movie-grid">
+        <p id="noMoviesMessage" style="text-align: center; display: none;">No movies found</p>
+        <div th:each="movie : ${movies}" class="movie-card" data-aos="zoom-in" data-aos-duration="800">
+            <div class="poster-wrapper">
+                <img th:src="@{${movie.imageUrl}}" th:alt="${movie.title}" alt="Movie poster" />
+                <div class="hover-overlay">▶ Watch Trailer</div>
+            </div>
+
+            <p class="movie-title" th:text="${movie.title}">Movie Title</p>
+
+           <button class="review-btn" data-movie-id="[[${movie.id}]]">Leave a Review</button>
+
+            <!-- Genres -->
+            <div class="genre-tags">
+                <span th:each="genre : ${#strings.arraySplit(movie.genre, ',')}" th:text="${genre}" class="genre-tag">Genre</span>
+            </div>
+
+            <a class="details-link" th:href="@{/movie-details/{id}(id=${movie.id})}">View Details</a>
+        </div>
+    </div>
+</div>
+
+ <div id="reviewModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.8); z-index:999;">
+  <div style="background:#2a2a2a; max-width:500px; margin:10% auto; padding:20px; border-radius:10px; position:relative;">
+    <span id="closeModal" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:1.5rem;">&times;</span>
+    
+    <h2 style="text-align:center;">Leave a Review</h2>
+    <form id="modalReviewForm">
+      <div class="star-rating">
+        <input type="radio" id="modal-star5" name="rating" value="5" /><label for="modal-star5">&#9733;</label>
+        <input type="radio" id="modal-star4" name="rating" value="4" /><label for="modal-star4">&#9733;</label>
+        <input type="radio" id="modal-star3" name="rating" value="3" /><label for="modal-star3">&#9733;</label>
+        <input type="radio" id="modal-star2" name="rating" value="2" /><label for="modal-star2">&#9733;</label>
+        <input type="radio" id="modal-star1" name="rating" value="1" /><label for="modal-star1">&#9733;</label>
+      </div>
+      <textarea name="comment" placeholder="Write your comment..." required></textarea>
+      <input type="hidden" name="movieId" id="modal-movieId" />
+      <input type="hidden" name="userId" value="[[${userId}]]" />
+      <button type="submit">Submit Review</button>
+    </form>
+  </div>
+</div>
+
+<footer>
+    <p>&copy; 2025 Cinema Paradiso. All rights reserved.</p>
+    <div class="socials">
+        <a href="https://www.facebook.com/">Facebook</a>
+        <a href="https://x.com/">Twitter</a>
+        <a href="https://www.instagram.com/">Instagram</a>
+    </div>
+</footer>
+
+<script>
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const mainPoster = document.getElementById("mainPoster");
+    const mainVideo = document.getElementById("mainVideo");
+    const playOverlay = document.getElementById("playOverlay");
+    const mainTitle = document.getElementById("mainTitle");
+    const trailerItems = document.querySelectorAll(".trailer-item");
+
+    // Play button click event
+    playOverlay.addEventListener("click", () => {
+      if (mainVideo.src) return;
+        mainPoster.style.display = "0";
+        playOverlay.style.display = "0";
+        setTimeout(() => {
+          mainPoster.style.display = "none";
+          playOverlay.style.display = "none";
+          mainVideo.style.display = "block";
+          mainVideo.style.opacity = "1";
+        }, 400)
+    });
+
+    // Clicking on "Up Next" trailer
+    trailerItems.forEach(item => {
+      item.addEventListener("click", () => {
+        let videoUrl = item.getAttribute("data-video");
+        const title = item.getAttribute("data-title");
+
+        if (videoUrl.includes("youtu.be")) {
+          const videoId = videoUrl.split("/").pop().split("?")[0];
+          videoUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&showinfo=0&controls=1`;
+        }
+
+        // Update video player
+        mainVideo.src = videoUrl;
+        mainTitle.textContent = title;
+
+        // Show video immediaytely
+        mainPoster.style.display = "none";
+        playOverlay.style.display = "none";
+        mainVideo.style.display = "block";
+        mainVideo.style.opacity = "1";
+      });
+    });
+
+    let currentIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    const slider = document.getElementById('slider');
+
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }, 8000);
+
+    // Search filtering
+    const input = document.getElementById('searchInput');
+    const cards = document.querySelectorAll('.movie-card');
+    const noMoviesMessage = document.getElementById('noMoviesMessage');
+
+    input.addEventListener('input', function () {
+      const query = this.value.toLowerCase();
+      let visible = 0;
+
+      cards.forEach(card => {
+        const title = card.querySelector('.movie-title').textContent.toLowerCase();
+        const genres = Array.from(card.querySelectorAll('.genre-tag'))
+                    .map(tag => tag.textContent.toLowerCase())
+                    .join(" ");
+
+         const show = (title + " " + genres).includes(query);
+         card.style.display = show ? '' : 'none';
+          if (show) visible++;
+      });
+
+      noMoviesMessage.style.display = visible === 0 ? 'block' : 'none';
+    });
+
+    document.getElementById("logo").addEventListener("click", function (e) {
+        e.preventDefault();
+        if (window.location.pathname === "/user/home") {
+          window.location.reload();
+        } else {
+          window.location.href = "/user/home"; // forces reload
+        }
+
+});
+
+    const reviewModal = document.getElementById('reviewModal');
+    const closeModal = document.getElementById('closeModal');
+
+document.querySelectorAll('.review-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+
+      document.getElementById('modal-movieId').value = btn.getAttribute('data-movie-id');
+      reviewModal.style.display = 'block';
+    });
+  });
+
+    closeModal.onclick = () => reviewModal.style.display = 'none';
+
+    // Close modal on click outside
+    window.onclick = e => {
+      if (e.target === reviewModal) reviewModal.style.display = 'none';
+    };
+
+    // Close modal on ESC
+    document.addEventListener('keydown', e => {
+      if (e.key === "Escape") reviewModal.style.display ='none';
+    });
+
+
+document.getElementById('modalReviewForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const form = e.target;
+
+    const review = {
+      rating: parseInt(form.rating.value),
+      comment: form.comment.value,
+      movie: {id: form.movieId.value},
+      user: {id: form.userId.value}
+    };
+
+    const res = await fetch('/user/review', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(review)
+    });
+
+    if (res.ok) {
+      alert("Review submitted!");
+      form.reset();
+      reviewModal.style.display = 'none';
+    } else {
+      alert("Failed to submit review.");
+    }
+  });
+});
+</script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+</body>
+</html>

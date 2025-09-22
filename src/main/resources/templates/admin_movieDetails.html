@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body { 
+            background-color: #303030;
+            color: #fff; 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+        }
+
+        .navbar { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            background: #202020; 
+            padding: 15px 25px; 
+            border-radius: 10px; 
+            margin-bottom: 25px; 
+        }
+
+        .navbar a { 
+            text-decoration: none; 
+            color: #fff; 
+            font-weight: bold; 
+        }
+
+        .navbar a:hover { 
+            color: #f51818; 
+        }
+
+        .container { 
+            display: flex; 
+            gap: 20px; 
+            background: #404040; 
+            padding: 20px; 
+            border-radius: 10px; 
+        }
+
+        .poster img { 
+            width: 300px; 
+            border-radius: 10px; 
+        }
+
+        .details h1 { 
+            color: #ffcc00; 
+            margin-bottom: 15px; 
+        }
+
+        .btn { 
+            display: inline-block; 
+            margin-top: 10px; 
+            padding: 8px 12px; 
+            background: #f51818; 
+            color: #000; 
+            border-radius: 5px; 
+            text-decoration: none; 
+            font-weight: bold; 
+        }
+
+        .btn:hover { 
+            background: #aa1919; 
+        }
+
+        .reviews {
+            margin-top: 30px;
+            padding: 20px;
+            background: #202020;
+            border-radius: 10px;
+        }
+
+        .review {
+            border-bottom: 1px solid #555;
+            padding: 10px 0;
+        }
+
+        .reviews:last-child {
+            border-bottom: none;
+        }
+
+        .rating i {
+            color: gold;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="/admin/admin_viewmovie"><i class="fa fa-arrow-left"></i> Back</a>
+        <h3>Movie Details</h3>
+    </div>
+
+    <div class="container">
+        <div class="poster">
+            <img th:if="${movie.imageUrl != null}" th:src="${movie.imageUrl}" alt="Poster">
+        </div>
+        <div class="details">
+            <h1 th:text="${movie.title}">Movie Title</h1>
+            <p><strong>Genre:</strong> <span th:text="${movie.genre}"></span></p>
+            <p><strong>Release Date:</strong> <span th:text="${movie.releaseYear}"></span></p>
+            <p><strong>Description:</strong> <span th:text="${movie.description}"></span></p>
+
+            <a th:href="@{/admin/editMovie/{id}(id=${movie.id})}" class="btn">Edit Movie</a>
+
+            <form th:action="@{/admin/deleteMovie/{id}(id=${movie.id})}" method="post"
+               onsubmit="return confirm('Are you sure, you want to delete this movie?');">
+               <button type="submit" class="btn">Delete Movie</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Review Section -->
+     <div class="reviews">
+        <h2>Reviews</h2>
+        <div th:if="${#lists.isEmpty(movie.reviews)}">
+            <p>No Reviews yet.</p>
+        </div>
+        <div th:each="review : ${movie.reviews}" class="review">
+            <p><strong th:text="${review.userName}">User</strong></p>
+            <p class="rating">
+                <span th:each="star : ${#numbers.sequence(1,10)}">
+                    <i class="fa" th:classappend="${star <= review.rating} ? 'fa-star' : 'fa-star-o'"></i>
+                </span>
+            </p>
+            <p th:text="${review.comment}">Review text....</p>
+        </div>
+     </div>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #666666;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            background: white;
+            padding: 30px 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #888;
+        }
+
+         label {
+            display: block;
+            margin-bottom: 5px;
+            color: #2d2d2d;
+        }
+        
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+         button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ff0000;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #b30000;
+        }
+    </style>
+</head>
+<body>
+    <form th:action="@{/register}" method="post" th:object="${user}">
+        <h1>Create your Account</h1>
+        <p>Already have an account?<a th:href="@{/login}">Sign In</a></p>
+        
+    <div>    
+    <label>Username:</label>    
+    <input type="text" th:field="*{username}" placeholder="Name" required>
+    </div>
+
+    <div>
+    <label>Email:</label>
+    <input type="email" th:field="*{email}" placeholder="Email" required>
+    </div>
+
+    <div class="password-container">
+    <label>Password:</label>
+    <input type="password" th:field="*{password}" placeholder="Password" required>
+    <i class="fas fa-eye toggle-password" onclick="togglePassword()"></i>
+    </div>
+
+    <div>
+    <button type="submit">Create account</button>
+    </div>
+</form>
+</body>
+</html>
